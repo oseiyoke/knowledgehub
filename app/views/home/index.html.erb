@@ -1,0 +1,34 @@
+<% if @cur_url == "/recent" %>
+  <div class="box" id="leader">
+    <em>The <a href="/newest">newest</a> stories that have not yet reached the front page.</em>
+  </div>
+<% end %>
+<% if @tag %>
+  <div class="box" id="leader">
+    Stories <a href="/tags">tagged</a> as
+    <%= tag_link(@tag) %>
+    &ndash;
+    <%= @tag.description %>
+  </div>
+<% end %>
+
+<ol class="stories list <%= @cur_url == "/hidden" ? "show_hidden" : "" %>">
+  <%= render :partial => "stories/listdetail", :collection => @stories,
+    :as => :story %>
+</ol>
+
+<div class="morelink">
+  <% if @page && @page > 1 %>
+    <a href="<%= @cur_url %><%= @cur_url == "/" ? "" : "/" %><%=
+      @page == 2 ? "" : "page/#{@page - 1}" %>">&lt;&lt; Page
+      <%= @page - 1 %></a>
+  <% end %>
+
+  <% if @show_more %>
+    <% if @page && @page > 1 %>
+      |
+    <% end %>
+    <a href="<%= @cur_url %><%= @cur_url == "/" ? "" : "/" %>page/<%=
+      @page + 1 %>">Page <%= @page + 1 %> &gt;&gt;</a>
+  <% end %>
+</div>

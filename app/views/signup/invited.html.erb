@@ -1,0 +1,58 @@
+<div class="box wide">
+  <div class="legend">
+    Create an Account
+  </div>
+
+  <%= form_with model: @new_user, :url => signup_path do |f| %>
+    <p>
+    To create a new account, enter your e-mail address and a password.
+    </p>
+
+    <%= error_messages_for(@new_user) %>
+    <p>
+    <%= f.label :first_name, "First Name:", :class => "required" %>
+    <%= f.text_field :first_name, :size => 30 %>
+    <br />
+
+    <%= f.label :last_name, "Last Name:", :class => "required" %>
+    <%= f.text_field :last_name, :size => 30 %>
+    <br />
+
+    <%= f.label :username, "Username:", :class => "required" %>
+    <%= f.text_field :username, :size => 30 %>
+    <br />
+
+    <%= f.label :email, "Email Address:", :class => "required" %>
+    <%= f.email_field :email, :size => 30 %>
+    
+    <br />
+
+    <%= f.label :password, "Password:", :class => "required" %>
+    <%= f.password_field :password, :size => 30, :autocomplete => "off" %>
+    <br />
+
+    <%= f.label :password_confirmation, "Password (again):",
+      :class => "required" %>
+    <%= f.password_field :password_confirmation, :size => 30,
+      :autocomplete => "off" %>
+    <br />
+    </p>
+
+    <p>
+    Want to tell us about yourself?  It's optional, but it will be visible in
+    your public profile and can be changed at any time.
+    </p>
+
+    <p>
+    <div class="boxline">
+      <%= f.label :about, "About:", :class => "required" %>
+      <%= f.text_area :about, :size => "100x5", :style => "width: 600px;" %>
+    </div>
+
+    
+
+    <p>
+    <%= f.submit "Signup", :class => "btn btn-primary" %>
+    </p>
+  <% end %>
+</div>
