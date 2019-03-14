@@ -5,7 +5,7 @@ gem "rails", "~> 5.2.0"
 gem "mysql2"
 
 gem "figaro"
-gem "bootstrap-sass", "~> 3.4.1"
+gem "bootstrap-sass", ">= 3.4.1"
 # uncomment to use PostgreSQL
 # gem "pg"
 gem 'sass-rails', '~> 5.0'
