@@ -25,6 +25,10 @@
     </p>
   </div>
 
+  <div class="boxline">
+    <%= f.file_field :attachment %>
+  </div>
+
   <% if f.object.id && !defined?(suggesting) && f.object.suggested_title_times.any? %>
     <div class="boxline actions">
       Users have suggested setting this story's title to:

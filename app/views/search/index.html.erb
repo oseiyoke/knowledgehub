@@ -14,7 +14,7 @@
       <label class="required">Search:</label>
 
       <%= f.radio_button "what", "stories", :checked => @search.what == "stories" %>
-        <label for="what_stories" class="normal">Stories</label>
+        <label for="what_stories" class="normal">Posts</label>
 
       &nbsp;
 
@@ -82,4 +82,16 @@
   <div class="help">
     Search by domain with <code>domain:example.com</code> and <%= link_to 'tag', tags_path %> with <code>tag:meta</code>.
   </div>
+<% end %>
+
+<% if !@files.empty? %>
+  <h2>  Search results found in files </h2>
+  <% @files.each_with_index do |res, index| %>
+    <%= render :partial => "stories/listdetail",
+    :locals => { :story => res, :page_number => @page_number[index] } %>
+  <p> Search results found on page: 
+    <%= @page_number[index] %>
+  </p>
+  <% end %>
+
 <% end %>

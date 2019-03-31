@@ -19,6 +19,20 @@ class StoriesController < ApplicationController
 
     if @story.valid? && !(@story.already_posted_recently? && !@story.seen_previous)
       if @story.save
+        User.all.each do |user|
+          next if user == @user
+          story_params[:tags_a].each do |tag|
+            next unless user.tags.any?
+            tag = Tag.find_by(tag: tag)
+            next unless tag && user.tags.ids.include?(tag.id)
+            @new_message = Message.new(subject: "New Post Notification (#{tag.tag})", body: "A new post has been created by #{@user.username} for (#{tag.tag})", recipient_username: user.username)
+            @new_message.author_user_id = @user.id
+      
+            @direction = :out
+            @messages = @user.undeleted_received_messages
+            @new_message.save
+          end
+        end
         ReadRibbon.where(user: @user, story: @story).first_or_create
         return redirect_to @story.comments_path
       end
@@ -364,7 +378,7 @@ private
   def story_params
     p = params.require(:story).permit(
       :title, :url, :description, :moderation_reason, :seen_previous,
-      :merge_story_short_id, :is_unavailable, :user_is_author, :tags_a => [],
+      :merge_story_short_id, :attachment, :is_unavailable, :user_is_author, :tags_a => [],
     )
 
     if @user && @user.is_moderator?

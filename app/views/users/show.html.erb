@@ -142,6 +142,12 @@
     </div>
   <% end %>
 
+  <label class="required">Rank:</label>
+
+  <div class="d shorten_first_p">
+    <%= raw @showing_user.rank %>
+  </div>
+
   <% if @user && @user.is_moderator? && !@showing_user.is_moderator? %>
     <h2>Moderator Information</h2>
 

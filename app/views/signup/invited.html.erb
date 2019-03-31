@@ -31,7 +31,7 @@
     <%= f.password_field :password, :size => 30, :autocomplete => "off" %>
     <br />
 
-    <%= f.label :password_confirmation, "Password (again):",
+    <%= f.label :password_confirmation, "Confirm password:",
       :class => "required" %>
     <%= f.password_field :password_confirmation, :size => 30,
       :autocomplete => "off" %>
@@ -49,6 +49,12 @@
       <%= f.text_area :about, :size => "100x5", :style => "width: 600px;" %>
     </div>
 
+    <div class="boxline" style="margin-bottom: 2px;">
+    <%= f.label :tags, "Tags:", :class => "required",
+      :style => "line-height: 2.3em;" %>
+    <%= f.collection_select(:tag_ids, Tag.all, :id, :tag,{}, {:multiple => true}) %>
+       
+    </div>
     
 
     <p>

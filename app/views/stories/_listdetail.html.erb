@@ -26,6 +26,9 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
         <a class="u-url" href="<%= story.url_or_comments_path %>"><%=
           break_long_words(story.title) %></a>
       <% end %>
+      <% if story.attachment? %>
+        <a class="u-url" target=_blank href="<%= story.attachment_url%><% if defined?(page_number) %>#page=<%=page_number%><% end %>">(view file)</a>
+      <% end %>
       <% if story.is_gone? %>
         [Story removed by <%= story.is_moderated? ? "moderator" :
           "original submitter" %>]
@@ -156,11 +159,7 @@ class="story <%= story.vote && story.vote[:vote] == 1 ? "upvoted" : "" %>
               :class => "saver" %>
           <% end %>
         <% end %>
-        <% if story.url.present? %>
-          |
-          <a href="<%= story.archive_url %>" rel="nofollow"
-            target="_blank">cached</a>
-        <% end %>
+        
         <% if !story.is_gone? %>
           <span class="comments_label">
             |

@@ -41,6 +41,10 @@ gem "sitemap_generator" # for better search engine indexing
 
 gem "ruumba"
 
+gem "pry"
+gem 'carrierwave', '~> 1.0'
+gem 'pdf-reader'
+
 group :test, :development do
   gem 'bullet'
   gem 'capybara'

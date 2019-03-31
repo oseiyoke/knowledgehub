@@ -49,22 +49,46 @@ class MessagesController < ApplicationController
     @cur_url = "/messages"
     @title = "Messages"
 
-    @new_message = Message.new(message_params)
-    @new_message.author_user_id = @user.id
-
-    @direction = :out
-    @messages = @user.undeleted_received_messages
-
-    if @new_message.save
-      if @user.is_moderator? && @new_message.mod_note
-        ModNote.create_from_message(@new_message, @user)
+    if params[:broadcast]
+      message_data = message_params
+      
+      User.all.each do |user|
+        next if user == @user
+        message_data[:recipient_username] = user.username
+        @new_message = Message.new(message_data)
+        @new_message.author_user_id = @user.id
+  
+        @direction = :out
+        @messages = @user.undeleted_received_messages
+        @new_message.save
       end
-      flash[:success] = "Your message has been sent to " <<
-                        @new_message.recipient.username.to_s << "."
-      return redirect_to "/messages"
+  
+      if @new_message.save
+        flash[:success] = "Your message has been sent to all"
+        return redirect_to "/messages"
+      else
+        render :action => "index"
+      end
+
     else
-      render :action => "index"
+      @new_message = Message.new(message_params)
+      @new_message.author_user_id = @user.id
+
+      @direction = :out
+      @messages = @user.undeleted_received_messages
+
+      if @new_message.save
+        if @user.is_moderator? && @new_message.mod_note
+          ModNote.create_from_message(@new_message, @user)
+        end
+        flash[:success] = "Your message has been sent to " <<
+                          @new_message.recipient.username.to_s << "."
+        return redirect_to "/messages"
+      else
+        render :action => "index"
+      end
     end
+
   end
 
   def show

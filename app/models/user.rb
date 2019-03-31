@@ -13,6 +13,9 @@ class User < ApplicationRecord
            :foreign_key => "recipient_user_id",
            :inverse_of => :recipient,
            :dependent => :restrict_with_exception
+
+  has_and_belongs_to_many :tags
+  
   has_many :tag_filters, :dependent => :destroy
   has_many :tag_filter_tags,
            :class_name => "Tag",
@@ -135,6 +138,23 @@ class User < ApplicationRecord
 
   def self.username_regex_s
     "/^" + VALID_USERNAME.to_s.gsub(/(\?-mix:|\(|\))/, "") + "$/"
+  end
+
+  def rank
+    total = stories.sum(:upvotes)
+    infinity = 1.0/0
+    case total
+    when 0..20
+      'Novice'
+    when 21..50
+      'Beginner'
+    when 51..150
+      'Professional'
+    when 150..500
+      'Expert'
+    when 500..infinity
+      'Veteran'
+    end
   end
 
   def as_json(_options = {})
