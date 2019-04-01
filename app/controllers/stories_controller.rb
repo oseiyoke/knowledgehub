@@ -10,6 +10,10 @@ class StoriesController < ApplicationController
   before_action :find_story!, :only => [:suggest, :submit_suggestions]
   around_action :track_story_reads, only: [:show], if: -> { @user.present? }
 
+  def index
+    @story = Story.all
+  end
+
   def create
     @title = "Submit Story"
     @cur_url = "/stories/new"
@@ -25,7 +29,7 @@ class StoriesController < ApplicationController
             next unless user.tags.any?
             tag = Tag.find_by(tag: tag)
             next unless tag && user.tags.ids.include?(tag.id)
-            @new_message = Message.new(subject: "New Post Notification (#{tag.tag})", body: "A new post has been created by #{@user.username} for (#{tag.tag})", recipient_username: user.username)
+            @new_message = Message.new(subject: "New Post Notification in #{tag.tag}", body: "A new post has been created by #{@user.username} for (#{tag.tag})", recipient_username: user.username, notification: true)
             @new_message.author_user_id = @user.id
       
             @direction = :out

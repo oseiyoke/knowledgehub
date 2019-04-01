@@ -19,6 +19,7 @@ gem "dynamic_form"
 gem "jquery-rails", "~> 4.3"
 gem "json"
 gem "uglifier", ">= 1.3.0"
+gem 'mailgun-ruby', '~>1.1.6'
 
 # deployment
 gem "actionpack-page_caching"

@@ -86,7 +86,7 @@ module ApplicationHelper
       if (count = @user.unread_message_count) > 0
         @right_header_links[messages_path] = {
           :class => ["new_messages"],
-          :title => "#{@user.unread_message_count} Message".pluralize(count),
+          :title => "#{@user.unread_message_count} Message".pluralize(count) + "/Notifications", 
         }
       else
         @right_header_links[messages_path] = { :title => "Messages" }
