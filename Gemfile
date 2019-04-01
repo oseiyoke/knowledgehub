@@ -6,9 +6,9 @@ gem "mysql2"
 
 gem "figaro"
 gem "bootstrap-sass", ">= 3.4.1"
+gem 'sassc-rails', '>= 2.1.0'
 # uncomment to use PostgreSQL
 # gem "pg"
-gem 'sass-rails', '~> 5.0'
 # rails
 gem 'scenic'
 gem 'scenic-mysql_adapter'

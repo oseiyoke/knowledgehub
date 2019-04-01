@@ -1,8 +1,11 @@
 <div class="box wide">
-  <div class="legend">
+  
+
+  <div class="col-sm-3"> </div>
+  <div class="col-sm-6">
+  <div class="legend text-center">
     Create an Account
   </div>
-
   <%= form_with model: @new_user, :url => signup_path do |f| %>
     <p>
     To create a new account, enter your e-mail address and a password.
@@ -11,29 +14,29 @@
     <%= error_messages_for(@new_user) %>
     <p>
     <%= f.label :first_name, "First Name:", :class => "required" %>
-    <%= f.text_field :first_name, :size => 30 %>
+    <%= f.text_field :first_name, :size => 30, :class => "form-control"  %>
     <br />
 
     <%= f.label :last_name, "Last Name:", :class => "required" %>
-    <%= f.text_field :last_name, :size => 30 %>
+    <%= f.text_field :last_name, :size => 30, :class => "form-control" %>
     <br />
 
     <%= f.label :username, "Username:", :class => "required" %>
-    <%= f.text_field :username, :size => 30 %>
+    <%= f.text_field :username, :size => 30, :class => "form-control" %>
     <br />
 
     <%= f.label :email, "Email Address:", :class => "required" %>
-    <%= f.email_field :email, :size => 30 %>
+    <%= f.email_field :email, :size => 30, :class => "form-control" %>
     
     <br />
 
     <%= f.label :password, "Password:", :class => "required" %>
-    <%= f.password_field :password, :size => 30, :autocomplete => "off" %>
+    <%= f.password_field :password, :size => 30, :class => "form-control", :autocomplete => "off" %>
     <br />
 
     <%= f.label :password_confirmation, "Confirm password:",
       :class => "required" %>
-    <%= f.password_field :password_confirmation, :size => 30,
+    <%= f.password_field :password_confirmation, :size => 30, :class => "form-control",
       :autocomplete => "off" %>
     <br />
     </p>
@@ -46,19 +49,21 @@
     <p>
     <div class="boxline">
       <%= f.label :about, "About:", :class => "required" %>
-      <%= f.text_area :about, :size => "100x5", :style => "width: 600px;" %>
+      <%= f.text_area :about, :size => "100x5", :style => "width: 600px;", :class => "form-control" %>
     </div>
 
     <div class="boxline" style="margin-bottom: 2px;">
-    <%= f.label :tags, "Tags:", :class => "required",
-      :style => "line-height: 2.3em;" %>
-    <%= f.collection_select(:tag_ids, Tag.all, :id, :tag,{}, {:multiple => true}) %>
-       
+      <%= f.label :tags, "Tags:", :class => "required",
+        :style => "line-height: 2.3em;" %>
+      <%= f.collection_select(:tag_ids, Tag.all, :id, :tag,{}, {:multiple => true}) %>
     </div>
     
 
     <p>
-    <%= f.submit "Signup", :class => "btn btn-primary" %>
+    <%= f.submit "Signup", :class => "btn btn-lg btn-primary" %>
     </p>
   <% end %>
+  </div>
+  <div class="col-sm-3"> </div>
+
 </div>

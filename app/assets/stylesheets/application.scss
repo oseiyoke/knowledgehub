@@ -1,9 +1,4 @@
-/*
- *= require select2
- *= require_self
- *= require mobile
- *= require_tree ./local
-*/
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -285,7 +280,7 @@ div#wrapper {
 	margin-right: auto;
 	padding-bottom: 2em;
 	min-width: 600px;
-	max-width: 1100px;
+	max-width: 1200px;
 }
 div#inside {
 	margin-left: 0.25em;

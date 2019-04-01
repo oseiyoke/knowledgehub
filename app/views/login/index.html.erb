@@ -1,5 +1,7 @@
 <div class="box wide">
-  <div class="legend">
+<div class="col-sm-3"></div>
+<div class="col-sm-3">
+  <div class="legend text-center">
     Login
   </div>
 
@@ -11,11 +13,11 @@
     <%= form_with url: login_path do |form| %>
     <p>
       <%= form.label :email, "E-mail or Username:" %>
-      <%= form.text_field :email, :size => 30, :autofocus => "autofocus" %>
+      <%= form.text_field :email, :size => 30, :autofocus => "autofocus", :class => "form-control" %>
       <br />
 
       <%= form.label :password, "Password:" %>
-      <%= form.password_field :password, :size => 30 %>
+      <%= form.password_field :password, :size => 30, :class => "form-control" %>
       <br />
       </p>
 
@@ -50,4 +52,7 @@
       <% end %>
     <% end %>
   <% end %>
+  </div>
+<div class="col-sm-3"></div>
+
 </div>
