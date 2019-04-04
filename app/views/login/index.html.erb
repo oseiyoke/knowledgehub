@@ -1,9 +1,14 @@
-<div class="box wide">
-<div class="col-sm-3"></div>
-<div class="col-sm-3">
-  <div class="legend text-center">
+<%
+=begin%>
+ <img id="avatar" class="img-responsive" src="/assets/snellville-websites-today-front-page"> 
+<%
+=end%>
+<div class="box wide login-box" style="color: white;">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+  <h2 class="legend text-center" style="font-size: 26px; color: white;">
     Login
-  </div>
+  </h2>
 
   <% if Rails.application.read_only? %>
     <p>
@@ -12,11 +17,11 @@
   <% else %>
     <%= form_with url: login_path do |form| %>
     <p>
-      <%= form.label :email, "E-mail or Username:" %>
+      <%= form.label :email, "E-mail or Username:", :style => "color:white" %>
       <%= form.text_field :email, :size => 30, :autofocus => "autofocus", :class => "form-control" %>
       <br />
 
-      <%= form.label :password, "Password:" %>
+      <%= form.label :password, "Password:", :style => "color:white"  %>
       <%= form.password_field :password, :size => 30, :class => "form-control" %>
       <br />
       </p>
@@ -25,13 +30,13 @@
       <%= form.submit "Login" %>
       </p>
 
-      <p>
+      <p style="color: white;">
       Forgot your password or deleted your account?
         <%= link_to "Reset your password", forgot_password_path %>.
       </p>
 
       <% if Rails.application.open_signups? %>
-        <p>
+        <p style="color: white;">
           Not a user yet? <a href="/invitations/open">Sign up here</a>.
         </p>
       <br />

@@ -1,53 +1,53 @@
-<div class="box wide">
+<div class="box wide signup-box">
   
 
   <div class="col-sm-3"> </div>
-  <div class="col-sm-6">
-  <div class="legend text-center">
+  <div class="col-sm-6" style="color:white; ">
+  <div class="legend text-center" style="font-size:26px; margin-top:20px;">
     Create an Account
   </div>
   <%= form_with model: @new_user, :url => signup_path do |f| %>
-    <p>
+    <p style="color:white; ">
     To create a new account, enter your e-mail address and a password.
     </p>
 
     <%= error_messages_for(@new_user) %>
     <p>
-    <%= f.label :first_name, "First Name:", :class => "required" %>
+    <%= f.label :first_name, "First Name:", :class => "required", :style => "color:white" %>
     <%= f.text_field :first_name, :size => 30, :class => "form-control"  %>
     <br />
 
-    <%= f.label :last_name, "Last Name:", :class => "required" %>
+    <%= f.label :last_name, "Last Name:", :class => "required", :style => "color:white" %>
     <%= f.text_field :last_name, :size => 30, :class => "form-control" %>
     <br />
 
-    <%= f.label :username, "Username:", :class => "required" %>
+    <%= f.label :username, "Username:", :class => "required", :style => "color:white" %>
     <%= f.text_field :username, :size => 30, :class => "form-control" %>
     <br />
 
-    <%= f.label :email, "Email Address:", :class => "required" %>
+    <%= f.label :email, "Email Address:", :class => "required", :style => "color:white" %>
     <%= f.email_field :email, :size => 30, :class => "form-control" %>
     
     <br />
 
-    <%= f.label :password, "Password:", :class => "required" %>
+    <%= f.label :password, "Password:", :class => "required", :style => "color:white" %>
     <%= f.password_field :password, :size => 30, :class => "form-control", :autocomplete => "off" %>
     <br />
 
     <%= f.label :password_confirmation, "Confirm password:",
-      :class => "required" %>
+      :class => "required", :style => "color:white" %>
     <%= f.password_field :password_confirmation, :size => 30, :class => "form-control",
       :autocomplete => "off" %>
     <br />
     </p>
 
-    <p>
+    <p style="color:white; ">
     Want to tell us about yourself?  It's optional, but it will be visible in
     your public profile and can be changed at any time.
     </p>
 
     <p>
-    <div class="boxline">
+    <div class="boxline" style="color:white; ">
       <%= f.label :about, "About:", :class => "required" %>
       <%= f.text_area :about, :size => "100x5", :style => "width: 600px;", :class => "form-control" %>
     </div>

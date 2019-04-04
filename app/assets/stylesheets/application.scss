@@ -9,6 +9,15 @@ html {
 	overflow-y: scroll;
 }
 
+.login-box{
+	background-image: url("/assets/snellville-websites-today-front-page");
+	height: 600px;
+}
+.signup-box{
+	background-image: url("/assets/snellville-websites-today-front-page");
+	height: 1300px;
+}
+
 body, textarea, input, button {
 	font-family: "helvetica neue", arial, sans-serif;
 	font-size: 10pt;
